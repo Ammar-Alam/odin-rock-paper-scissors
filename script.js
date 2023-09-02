@@ -36,3 +36,24 @@ function playRound(playerSelection, computerSelection){
         return "You lose! Rock beats scissors."
     }
 }
+
+// Plays rock, paper, scissors 5 times with the player
+function game(){
+    // Play 5 times
+    for(let index = 0; index < 5; index++){
+        let computerSelection = getComputerChoice();
+        let playerSelection = prompt("Make your choice: Rock, paper, or scissors?");
+        playerSelection = String(playerSelection).toLowerCase();
+        // If the player enters something other than 'rock', 'paper', or 'scissors', repeat prompt until they make a valid choice
+        if(playerSelection !== 'rock' && playerSelection !== 'paper' && playerSelection !== 'scissors'){
+            while (playerSelection !== 'rock' && playerSelection !== 'paper' && playerSelection !== 'scissors'){
+                playerSelection = prompt("Inavlid Answer! Make your choice: Rock, paper, or scissors?");
+            }
+        }
+        let result = playRound(playerSelection, computerSelection);
+        console.log(result);
+        alert(result);
+    }
+}
+
+game();
