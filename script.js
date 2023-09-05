@@ -4,6 +4,7 @@ const TIE = null;
 let playerWins = 0;
 let computerWins = 0;
 
+// Updates the score for the player and computer
 function updateScore() {
     const playerScore = document.querySelector(".player-name#player-score");
     const computerScore = document.querySelector(".player-name#computer-score");
@@ -82,16 +83,11 @@ function playRound(playerSelection){
     }
 }
 
-function playGame() {
-    
-}
-
-const buttons = document.querySelectorAll('button.option-button');
-
-buttons.forEach(button => button.addEventListener('click', () => {
+// Plays the game once when the player makes a choice
+function playGame(e) {
     const winStatus = document.querySelector('.result');
     const msg = document.querySelector('.sub-result');
-    const playerSelection = String(button.id);
+    const playerSelection = String(this.id);
     const results = playRound(playerSelection);
     msg.textContent = results[0];
     switch (results[1]) {
@@ -112,8 +108,21 @@ buttons.forEach(button => button.addEventListener('click', () => {
     if (playerWins === 5) {
         const winStatus = document.querySelector('.result');
         winStatus.textContent = "Game Over! Player wins!"
+        disableButtons();
     } else if (computerWins === 5) {
         const winStatus = document.querySelector('.result');
         winStatus.textContent = "Game Over! Computer wins!"
-    }
-}));
+        disableButtons();
+    }   
+}
+
+// Disables all buttons to end the game
+function disableButtons() {
+    console.log(`Buttons disabled.`)
+    const buttons = document.querySelectorAll('button.option-button');
+    buttons.forEach(button => button.disabled = true)
+}
+
+// Add event listeners to all buttons to allow for gameplay
+const buttons = document.querySelectorAll('button.option-button');
+buttons.forEach(button => button.addEventListener('click', playGame));
