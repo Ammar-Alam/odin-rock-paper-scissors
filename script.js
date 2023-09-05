@@ -9,6 +9,13 @@ function updateScore() {
     const computerScore = document.querySelector(".player-name#computer-score");
     playerScore.textContent = `Player: ${playerWins}`
     computerScore.textContent = `Computer: ${computerWins}`
+    if (playerWins === 5) {
+        const winStatus = document.querySelector('.result');
+        winStatus.textContent = "Game Over! Player wins!"
+    } else if (computerWins === 5) {
+        const winStatus = document.querySelector('.result');
+        winStatus.textContent = "Game Over! Computer wins!"
+    }
 }
 
 // Returns the choice the computer made
@@ -75,10 +82,15 @@ function playRound(playerSelection){
     }
 }
 
+function playGame() {
+    
+}
+
 const buttons = document.querySelectorAll('button.option-button');
-const winStatus = document.querySelector('.result');
-const msg = document.querySelector('.sub-result');
+
 buttons.forEach(button => button.addEventListener('click', () => {
+    const winStatus = document.querySelector('.result');
+    const msg = document.querySelector('.sub-result');
     const playerSelection = String(button.id);
     const results = playRound(playerSelection);
     msg.textContent = results[0];
@@ -96,4 +108,12 @@ buttons.forEach(button => button.addEventListener('click', () => {
             break;
     }
     updateScore();
+    
+    if (playerWins === 5) {
+        const winStatus = document.querySelector('.result');
+        winStatus.textContent = "Game Over! Player wins!"
+    } else if (computerWins === 5) {
+        const winStatus = document.querySelector('.result');
+        winStatus.textContent = "Game Over! Computer wins!"
+    }
 }));
