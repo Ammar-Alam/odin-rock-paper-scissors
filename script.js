@@ -4,6 +4,13 @@ const TIE = null;
 let playerWins = 0;
 let computerWins = 0;
 
+function updateScore() {
+    const playerScore = document.querySelector(".player-name#player-score");
+    const computerScore = document.querySelector(".player-name#computer-score");
+    playerScore.textContent = `Player: ${playerWins}`
+    computerScore.textContent = `Computer: ${computerWins}`
+}
+
 // Returns the choice the computer made
 function getComputerChoice(){
     // Constants representing which number corresponds to which choice
@@ -18,6 +25,7 @@ function getComputerChoice(){
     }
 }
 
+// Changes emojis representing the choices the computer and player made based on selection
 function setChoiceSymbols(playerChoice, computerChoice) {
     const playerSymbol = document.querySelector('#player-selection');
     const computerSymbol = document.querySelector('#computer-selection');
@@ -87,5 +95,5 @@ buttons.forEach(button => button.addEventListener('click', () => {
             winStatus.textContent = "Tie!"
             break;
     }
-
+    updateScore();
 }));
